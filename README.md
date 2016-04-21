@@ -7,9 +7,7 @@ A tool to look up secrets from a vault based on existing shareable configuration
  [![Coveralls](https://img.shields.io/coveralls/jhermann/config-sesame.svg)](https://coveralls.io/r/jhermann/config-sesame)
  [![GitHub Issues](https://img.shields.io/github/issues/jhermann/config-sesame.svg)](https://github.com/1and1/config-sesame/issues)
  [![License](https://img.shields.io/pypi/l/config-sesame.svg)](https://github.com/1and1/config-sesame/blob/master/LICENSE)
- [![Development Status](https://pypip.in/status/config-sesame/badge.svg)](https://pypi.python.org/pypi/config-sesame/)
  [![Latest Version](https://img.shields.io/pypi/v/config-sesame.svg)](https://pypi.python.org/pypi/config-sesame/)
- [![Download format](https://pypip.in/format/config-sesame/badge.svg)](https://pypi.python.org/pypi/config-sesame/)
  [![Downloads](https://img.shields.io/pypi/dw/config-sesame.svg)](https://pypi.python.org/pypi/config-sesame/)
 
 
