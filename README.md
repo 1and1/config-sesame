@@ -1,5 +1,6 @@
 # config-sesame
 
+![Logo](https://raw.githubusercontent.com/1and1/config-sesame/master/docs/_static/img/logo.png)
 A tool to look up secrets from a vault based on existing shareable configuration.
 
  [![Travis CI](https://api.travis-ci.org/jhermann/config-sesame.svg)](https://travis-ci.org/jhermann/config-sesame)
