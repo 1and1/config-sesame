@@ -50,7 +50,7 @@ grep /.bash_completion.d/$cmdname.sh ~/.bash_completion >/dev/null \
 
 ## Usage
 
-…
+:books: Please see the main docummentation a Read the Docs for usage instructions.
 
 
 ## Contributing
