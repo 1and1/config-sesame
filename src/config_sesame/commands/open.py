@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-# pylint: disable=bad-continuation, unused-import
-""" CLI commands.
+# pylint: disable=bad-continuation, too-few-public-methods
+""" 'open' command.
 """
 # Copyright ©  2016 1&1 Group <jh@web.de>
 #
@@ -17,6 +17,16 @@
 # limitations under the License.
 from __future__ import absolute_import, unicode_literals, print_function
 
-# Load the command modules for registration
-from . import help  # noqa pylint: disable=redefined-builtin
-from . import open  # noqa pylint: disable=redefined-builtin
+import os
+import sys
+
+from rudiments.reamed import click
+
+from .. import config
+
+
+@config.cli.command(name='open')
+@click.pass_context
+def open_command(ctx):
+    """Open vault and amend configuration file."""
+    print("Not implemented!")
