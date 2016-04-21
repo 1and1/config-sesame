@@ -10,10 +10,26 @@
 Welcome to the “Config Sesame” manual!
 =============================================================================
 
-.. image:: _static/img/logo.png
+.. |logo| image:: _static/img/logo.png
 
-A tool to look up secrets from a vault based on existing shareable configuration.
+|logo| *A tool to look up secrets from a vault based on existing shareable configuration.*
 
+Overview
+--------
+
+The ``config-sesame`` command line tool can be used as part of a continuous deployment pipeline
+to provide applications with runtime secrets.
+For this purpose, it scans already assembled application configuration (``application.yml``)
+for references to secrets stored in a “vault”, and writes resolved secrets to an additional file
+(``secrets.yml``). See :doc:`usage` for more.
+
+Important Links
+---------------
+
+  * `GitHub Project <https://github.com/1and1/config-sesame>`_
+  * `Issue Tracker <https://github.com/1and1/config-sesame/issues>`_
+  * `PyPI <https://pypi.python.org/pypi/config-sesame/>`_
+  * `Latest Documentation <https://config-sesame.readthedocs.org/en/latest/>`_
 
 Installing
 ----------
