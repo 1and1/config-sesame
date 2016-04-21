@@ -1,0 +1,16 @@
+{
+    "email": "jh@web.de",
+    "features": "travis flake8 cli",
+    "full_name": "1&1 Group",
+    "github_url": "https://github.com/1and1/config-sesame",
+    "github_username": "jhermann",
+    "keywords": "hosted.by.github,config,secrets,tool,yaml",
+    "license": "Apache 2.0",
+    "pkg_name": "config_sesame",
+    "project_name": "Config Sesame",
+    "repo_name": "config-sesame",
+    "short_description": "A tool to look up secrets from a vault based on existing shareable configuration",
+    "url": "https://github.com/1and1/config-sesame",
+    "version": "0.1.0",
+    "year": "2016"
+}
