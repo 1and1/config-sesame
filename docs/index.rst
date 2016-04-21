@@ -45,7 +45,7 @@ To get a bleeding-edge version from source, use these commands:
 
 .. code-block:: shell
 
-    repo="jhermann/config-sesame"
+    repo="1and1/config-sesame"
     pip install -r "https://raw.githubusercontent.com/$repo/master/requirements.txt"
     pip install -UI -e "git+https://github.com/$repo.git#egg=${repo#*/}"
 

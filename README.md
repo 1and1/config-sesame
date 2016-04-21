@@ -3,9 +3,9 @@
 ![Logo](https://raw.githubusercontent.com/1and1/config-sesame/master/docs/_static/img/logo.png)
 A tool to look up secrets from a vault based on existing shareable configuration.
 
- [![Travis CI](https://api.travis-ci.org/jhermann/config-sesame.svg)](https://travis-ci.org/jhermann/config-sesame)
- [![Coveralls](https://img.shields.io/coveralls/jhermann/config-sesame.svg)](https://coveralls.io/r/jhermann/config-sesame)
- [![GitHub Issues](https://img.shields.io/github/issues/jhermann/config-sesame.svg)](https://github.com/1and1/config-sesame/issues)
+ [![Travis CI](https://api.travis-ci.org/1and1/config-sesame.svg)](https://travis-ci.org/1and1/config-sesame)
+ [![Coveralls](https://img.shields.io/coveralls/1and1/config-sesame.svg)](https://coveralls.io/r/1and1/config-sesame)
+ [![GitHub Issues](https://img.shields.io/github/issues/1and1/config-sesame.svg)](https://github.com/1and1/config-sesame/issues)
  [![License](https://img.shields.io/pypi/l/config-sesame.svg)](https://github.com/1and1/config-sesame/blob/master/LICENSE)
  [![Latest Version](https://img.shields.io/pypi/v/config-sesame.svg)](https://pypi.python.org/pypi/config-sesame/)
  [![Downloads](https://img.shields.io/pypi/dw/config-sesame.svg)](https://pypi.python.org/pypi/config-sesame/)
@@ -27,7 +27,7 @@ see [releases](https://github.com/1and1/config-sesame/releases) for an overview 
 To get a bleeding-edge version from source, use these commands:
 
 ```sh
-repo="jhermann/config-sesame"
+repo="1and1/config-sesame"
 pip install -r "https://raw.githubusercontent.com/$repo/master/requirements.txt"
 pip install -UI -e "git+https://github.com/$repo.git#egg=${repo#*/}"
 ```
