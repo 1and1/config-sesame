@@ -13,7 +13,7 @@ A tool to look up secrets from a vault based on existing shareable configuration
 
 ## Overview
 
-The ``config-seseame`` command line tool can be used as part of a continuous deployment pipeline
+The ``config-sesame`` command line tool can be used as part of a continuous deployment pipeline
 to provide applications with runtime secrets.
 For this purpose, it scans already assembled application configuration (``application.yml``)
 for references to secrets stored in a “vault”, and writes resolved secrets to an additional file
