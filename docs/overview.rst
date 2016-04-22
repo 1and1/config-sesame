@@ -78,4 +78,16 @@ via duplication (``::``).
 A Typical CD Pipeline
 ---------------------
 
-**TODO**
+:num:`Figure #cd-pipeline` shows the environment in which ``config-sesame`` does its job.
+Given the existing application configuration, the application itself, and the secrets
+stored safely in *Vault*, it creates the ``secrets.yml`` file as the missing part of
+the inputs for the configuration management tool of your choice, to deploy the configured
+application to the target runtime environment.
+
+.. _cd-pipeline:
+
+.. figure:: _static/img/cd-pipeline.png
+   :align: center
+   :alt: Config Sesame in a CD pipeline
+
+   How ``config-seasme`` fits into the data-flow of a CD pipeline.
