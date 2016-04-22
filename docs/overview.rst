@@ -90,4 +90,4 @@ application to the target runtime environment.
    :align: center
    :alt: Config Sesame in a CD pipeline
 
-   How ``config-seasme`` fits into the data-flow of a CD pipeline.
+   How ``config-sesame`` fits into the data-flow of a CD pipeline.
