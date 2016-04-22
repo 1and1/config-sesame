@@ -2,4 +2,5 @@
 # "Read The Docs" requirements
 #
 
+sphinx-numfig==0.1.1
 -r ../requirements.txt
