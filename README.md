@@ -17,7 +17,9 @@ The ``config-sesame`` command line tool can be used as part of a continuous depl
 to provide applications with runtime secrets.
 For this purpose, it scans already assembled application configuration (``application.yml``)
 for references to secrets stored in a “vault”, and writes resolved secrets to an additional file
-(``secrets.yml``).
+(``secrets.yml``). For more details, see the
+[main documentation](http://config-sesame.readthedocs.org/en/latest/overview.html).
+
 
 
 ## Installation
