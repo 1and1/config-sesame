@@ -15,7 +15,7 @@ Motivation
 Collaborative workflows in a devops environment profit from shared code and configuration repositories, due to increased transparency and lowered maintenance efforts.
 Having fewer redundantly maintained copies of shareable information also reduces hand-over friction and thus error rates.
 
-As a consequence, secrets need their own place outside of code and configuration SCMs, with an enforced access policy.
+As a consequence, secrets need their own place outside of code and configuration SCM systems, with an enforced access policy.
 That leaves the rest of the configuration in a state where it can be freely shared amongst technical staff (i.e. put into the application's source code repository).
 The secrets that are left out are then replaced by *references* to those secrets, so they can be looked up later on and provided to the consuming applications as part of the delivery process.
 Typical secrets are passwords, SSH private keys + certificates, and API keys.
