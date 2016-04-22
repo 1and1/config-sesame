@@ -24,7 +24,7 @@ Secrets can be used both for purposes of controlling the pipeline and protecting
 The purpose of this tool is protecting sensitive information when it's used in the delivery pipeline and its workflows.
 How secrets are stored and used on the target systems is out of scope, since that is strongly coupled to external (technical) restrictions of the target platforms and applications.
 
-Protecting the secrets is done by delaying their injection into the pipeline as long as possible, and create a *separate* configuration file on either a deployment agent (e.g. a machine running Ansible playbooks), or the target system.
+Protecting the secrets is done by delaying their injection into the pipeline as long as possible, and creating a *separate* configuration file on either a deployment agent (e.g. a machine running Ansible playbooks), or the target system.
 Using an agent machine is preferable, since then the vault access credentials are used at fewer places, and you have fewer machines to consider when maintaining your tools.
 
 
