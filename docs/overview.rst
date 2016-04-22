@@ -28,8 +28,8 @@ Protecting the secrets is done by delaying their injection into the pipeline as 
 Using an agent machine is preferable, since then the vault access credentials are used at fewer places, and you have fewer machines to consider when maintaining your tools.
 
 
-Concepts
---------
+Requirements
+------------
 
 The following tenets and requirements were considered in the design:
 
