@@ -10,3 +10,6 @@ configobj>=5.0,<6
 #-e git+https://github.com/jhermann/configobj@move-to-package-32#egg=configobj
 #rudiments==0.1.0
 -e git+https://github.com/jhermann/rudiments#egg=rudiments
+
+PyYAML==3.11
+pyaml
