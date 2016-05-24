@@ -36,7 +36,7 @@ bleeding-edge version from source, use these commands:
     pip install -r "https://raw.githubusercontent.com/$repo/master/requirements.txt"
     pip install -U -e "git+https://github.com/$repo.git#egg=${repo#*/}"
 
-See `Contributing <#id-contributing>`_ on how to create a full development environment.
+See `Contributing <#contributing>`_ on how to create a full development environment.
 
 To add bash completion, read the `Click docs`_ about it, or just follow
 these instructions:
@@ -57,8 +57,6 @@ Usage
 
 Please see the `main documentation`_ at *Read the Docs* for usage instructions.
 
-
-.. id-contributing:
 
 Contributing
 ------------
