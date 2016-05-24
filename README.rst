@@ -108,6 +108,11 @@ References
 -  `Rituals`_
 -  `Click`_
 
+**Related Projects**
+
+- `jsonmerge`_
+
+
 Acknowledgements
 ----------------
 
@@ -132,6 +137,7 @@ Acknowledgements
 .. _yolk3k: https://github.com/myint/yolk#yolk
 .. _Rituals: https://jhermann.github.io/rituals
 .. _Click: http://click.pocoo.org/
+.. _`jsonmerge`: https://github.com/avian2/jsonmerge
 
 .. |Logo| image:: https://raw.githubusercontent.com/1and1/config-sesame/master/docs/_static/img/logo.png
 .. |Travis CI| image:: https://api.travis-ci.org/1and1/config-sesame.svg
