@@ -1,0 +1,4 @@
+my:
+  database:
+    name: "scalar"
+    password: vault:db/password

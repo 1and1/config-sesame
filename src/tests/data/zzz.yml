@@ -1,0 +1,3 @@
+my:
+  database:
+    password: vault:db2/password

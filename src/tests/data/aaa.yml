@@ -1,0 +1,7 @@
+my:
+  application:
+    name: foo
+    version: "1.2.3"
+db:
+  name: "gets overwritten"
+  type: "mysql"
