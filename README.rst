@@ -55,7 +55,7 @@ these instructions:
 Usage
 -----
 
-:books: Please see the `main documentation`_ at *Read the Docs* for usage instructions.
+Please see the `main documentation`_ at *Read the Docs* for usage instructions.
 
 
 Contributing
@@ -63,7 +63,7 @@ Contributing
 
 Contributing to this project is easy, and reporting an issue or adding
 to the documentation also improves things for every user. You don’t need
-to be a developer to contribute. See `CONTRIBUTING`_ for more.
+to be a developer to contribute. See `CONTRIBUTING <CONTRIBUTING.md>`_ for more.
 
 As a documentation author or developer, to **create a working
 directory** for this project, call these commands:
@@ -119,7 +119,7 @@ Acknowledgements
 .. _releases: https://github.com/1and1/config-sesame/releases
 .. _Contributing: #contributing
 .. _Click docs: http://click.pocoo.org/4/bashcomplete/#activation
-.. _CONTRIBUTING: https://github.com/1and1/config-sesame/blob/master/CONTRIBUTING.md
+.. _`CONTRIBUTING.md`: https://github.com/1and1/config-sesame/blob/master/CONTRIBUTING.md
 .. _setup procedures: https://py-generic-project.readthedocs.org/en/latest/installing.html#quick-setup
 .. _have them available: https://github.com/jhermann/priscilla/tree/master/pyenv
 .. _Cookiecutter: http://cookiecutter.readthedocs.org/en/latest/
