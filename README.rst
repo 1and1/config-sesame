@@ -115,17 +115,17 @@ Acknowledgements
 
 
 
-.. _main documentation: http://config-sesame.readthedocs.org/en/latest/overview.html
+.. _main documentation: http://config-sesame.readthedocs.io/en/latest/overview.html
 .. _releases: https://github.com/1and1/config-sesame/releases
 .. _Contributing: #contributing
 .. _Click docs: http://click.pocoo.org/4/bashcomplete/#activation
 .. _`CONTRIBUTING.md`: https://github.com/1and1/config-sesame/blob/master/CONTRIBUTING.md
-.. _setup procedures: https://py-generic-project.readthedocs.org/en/latest/installing.html#quick-setup
+.. _setup procedures: https://py-generic-project.readthedocs.io/en/latest/installing.html#quick-setup
 .. _have them available: https://github.com/jhermann/priscilla/tree/master/pyenv
-.. _Cookiecutter: http://cookiecutter.readthedocs.org/en/latest/
+.. _Cookiecutter: http://cookiecutter.readthedocs.io/en/latest/
 .. _PyInvoke: http://www.pyinvoke.org/
 .. _pytest: http://pytest.org/latest/contents.html
-.. _tox: https://tox.readthedocs.org/en/latest/
+.. _tox: https://tox.readthedocs.io/en/latest/
 .. _Pylint: http://docs.pylint.org/
 .. _twine: https://github.com/pypa/twine#twine
 .. _bpython: http://docs.bpython-interpreter.org/
