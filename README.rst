@@ -36,7 +36,8 @@ bleeding-edge version from source, use these commands:
     pip install -r "https://raw.githubusercontent.com/$repo/master/requirements.txt"
     pip install -U -e "git+https://github.com/$repo.git#egg=${repo#*/}"
 
-See `Contributing <#contributing>`_ on how to create a full development environment.
+See `Contributing <#contributing>`_ on how to create a full development environment,
+and `Installing Config Sesame`_ for detailed instructions in the main documentation.
 
 To add bash completion, read the `Click docs`_ about it, or just follow
 these instructions:
@@ -127,6 +128,7 @@ Acknowledgements
 
 .. _`Ansible vars plugin`: http://docs.ansible.com/ansible/developing_plugins.html#vars-plugins
 .. _main documentation: http://config-sesame.readthedocs.io/en/latest/overview.html
+.. _`Installing Config Sesame`: http://config-sesame.readthedocs.io/en/latest/deploy.html
 .. _releases: https://github.com/1and1/config-sesame/releases
 .. _Contributing: #contributing
 .. _Click docs: http://click.pocoo.org/4/bashcomplete/#activation
