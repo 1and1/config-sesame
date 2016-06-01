@@ -58,6 +58,12 @@ Usage
 Please see the `main documentation`_ at *Read the Docs* for usage instructions.
 
 
+Future Plans
+------------
+
+- Act as an `Ansible vars plugin`_.
+
+
 Contributing
 ------------
 
@@ -119,7 +125,7 @@ Acknowledgements
 …
 
 
-
+.. _`Ansible vars plugin`: http://docs.ansible.com/ansible/developing_plugins.html#vars-plugins
 .. _main documentation: http://config-sesame.readthedocs.io/en/latest/overview.html
 .. _releases: https://github.com/1and1/config-sesame/releases
 .. _Contributing: #contributing
