@@ -19,8 +19,41 @@
 Installing Config Sesame
 =============================================================================
 
+Installing Hashicorp Vault
+--------------------------
+
+See `Vault's documentation`_ for detailed instructions.
+For a simple development / test installation on *Ubuntu*, this works:
+
+.. code-block:: shell
+
+    version=0.5.3
+    curl -sLS "https://releases.hashicorp.com/vault/${version}/vault_${version}_linux_amd64.zip" \
+        | funzip >/usr/local/bin/vault
+    chmod a+x /usr/local/bin/vault
+    apt-get install supervisor
+    adduser vault --ingroup daemon --home /var/lib/vault --system --disabled-password
+    cat >/etc/supervisor/conf.d/vault.conf <<'EOF'
+    [program:vault]
+    command         = /usr/local/bin/vault server -dev
+    user            = vault
+    redirect_stderr = True
+    autostart       = True
+    EOF
+    supervisorctl update
+    supervisorctl tail -2200 vault
+
+.. warning::
+
+    As mentioned above, this is intended for experimenting with Vault on
+    your workstation. Do **NOT** run it this way on anything that is intended
+    for production use.
+
 
 Providing Credentials for Vault
 -------------------------------
 
 **TODO**
+
+
+.. _`Vault's documentation`: https://www.vaultproject.io/intro/getting-started/install.html
