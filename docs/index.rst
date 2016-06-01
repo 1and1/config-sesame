@@ -63,7 +63,7 @@ To get a bleeding-edge version from source, use these commands:
     pip install -r "https://raw.githubusercontent.com/$repo/master/requirements.txt"
     pip install -U -e "git+https://github.com/$repo.git#egg=${repo#*/}"
 
-See the following section on how to create a full development environment.
+See :doc:`deploy` for detailed setup and configuration instructions.
 
 To add bash completion, read the
 `Click docs <http://click.pocoo.org/4/bashcomplete/#activation>`_
