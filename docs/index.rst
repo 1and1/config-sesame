@@ -95,6 +95,7 @@ Documentation Contents
     :maxdepth: 4
 
     overview
+    deploy
     usage
     api-reference
     CONTRIBUTING

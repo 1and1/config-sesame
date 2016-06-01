@@ -9,11 +9,7 @@
 Using Config Sesame
 =============================================================================
 
-
-Providing Credentials for Vault
--------------------------------
-
-**TODO**
+*See* :doc:`deploy` *for instructions on how to install and configure the tool.*
 
 
 Performing Password Lookups
