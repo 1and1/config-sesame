@@ -19,7 +19,10 @@ from __future__ import absolute_import, unicode_literals, print_function
 
 import os
 import sys
+import getpass
 
+import hvac
+from rudiments import security
 from rudiments.reamed import click
 
 from .. import config
@@ -51,6 +54,25 @@ def help_command(ctx, config_dump=False):
     click.echo(u'The following configuration files are merged in order, if they exist:\n    {0}'.format(
         u'\n    '.join(u'{}   {}'.format(*i) for i in locations),
     ))
+
+    banner('Vault Information')
+    vault_url = os.environ.get('VAULT_ADDR')  # TODO: also add lookup from config / cmd line
+    vault_token = os.environ.get('VAULT_TOKEN')
+    vault_user, auth_by = getpass.getuser(), 'environment'
+    if not vault_token:
+        access = security.Credentials(vault_url)
+        vault_user, vault_token = access.auth_pair()
+        auth_by = access.source
+    vault_client = hvac.Client(url=vault_url, token=vault_token)
+    print ("Connected to {} [authenticated by {}'s token from {}].".format(vault_url, vault_user, auth_by or 'N/A'))
+    print("Policies: {}".format(', '.join(vault_client.list_policies())))
+    print("Storage:".format())
+    for mount, data in vault_client.list_secret_backends().items():
+        print("    {mount:15s} {type:15s} {description}".format(mount=mount, **data))
+
+    #print("".format())
+    # >>> vault_client.list_auth_backends()
+    # {u'token/': {u'type': u'token', u'description': u'token based credentials'}}
 
     banner('More Help')
     click.echo("Call '{} --help' to get a list of available commands & options.".format(app_name))

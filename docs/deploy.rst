@@ -93,7 +93,26 @@ this works when called in a ``root`` shell:
 Providing Credentials for Vault
 -------------------------------
 
-**TODO**
+Make sure your *Vault* server is up and reachable by using these commands:
+
+.. code-block:: shell
+
+    export VAULT_ADDR="http://127.0.0.1:8200"
+    vault status
+
+If the server runs on a remote machine, adapt the ``VAULT_ADDR`` accordingly.
+
+Let's try accessing the server via ``config-seasme`` next. First, add the
+*vault root token* to your keyring (you'll find that in the file ``/var/lib/vault/.vault-token``,
+given the setup outline above):
+
+    keyring set "$VAULT_ADDR" "$LOGNAME"
+
+You can also set the ``VAULT_TOKEN`` environment variable (which is not as secure),
+or do nothing, then you'll be prompted for the token on the console.
+
+Now call the ``config-sesame help`` command, and it should show some information
+about your running *Vault* service.
 
 
 .. _`Installing Python Software`: https://py-generic-project.readthedocs.io/en/latest/installing.html#quick-setup
