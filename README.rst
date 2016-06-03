@@ -125,9 +125,10 @@ References
 Acknowledgements
 ----------------
 
-…
+Documentation hosted by `Read the Docs`_.
 
 
+.. _`Read the Docs`: https://readthedocs.org/
 .. _`Ansible vars plugin`: http://docs.ansible.com/ansible/developing_plugins.html#vars-plugins
 .. _main documentation: http://config-sesame.readthedocs.io/en/latest/overview.html
 .. _`Installing Config Sesame`: http://config-sesame.readthedocs.io/en/latest/deploy.html
