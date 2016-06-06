@@ -2,3 +2,6 @@ my:
   database:
     name: "scalar"
     password_secret: vault:db/password
+  resource:
+    name: "my resource"
+    password_secret: vault:resource/password
