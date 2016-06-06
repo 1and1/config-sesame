@@ -1,4 +1,4 @@
 my:
   database:
     name: "scalar"
-    password: vault:db/password
+    password_secret: vault:db/password
