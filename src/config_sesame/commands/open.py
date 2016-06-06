@@ -20,6 +20,7 @@ from __future__ import absolute_import, unicode_literals, print_function
 import io
 import os
 import sys
+import collections
 
 import yaml
 from pyaml import dump as ppyaml
@@ -39,12 +40,23 @@ def load_all(filename):
         raise UsageError("Unsupported file type (extension) in '{}'!".format(filename))
 
 
+def merge_objects(namespace, obj):
+    """Update ``namespace`` with data in ``obj``."""
+    is_mapping = lambda o: isinstance(o, (dict, collections.Mapping))
+
+    for key, val in obj.items():
+        if key in namespace and is_mapping(namespace[key]) and is_mapping(val):
+            merge_objects(namespace[key], val)
+        else:
+            namespace[key] = val
+
+
 def read_merged_files(cfgfiles):
     """Read a list of hierachical config files, and merge their keys."""
     result = {}
     for cfgfile in cfgfiles:
         for obj in load_all(cfgfile):
-            result.update(obj) # TODO: sensible merging strategy
+            merge_objects(result, obj)
     return result
 
 
