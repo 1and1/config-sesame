@@ -1,0 +1,5 @@
+config-sesame (0.1.0) xenial; urgency=low
+
+  * config-sesame: Initial debian packaging
+
+ -- Juergen Hermann <jh@web.de>  Tue, 14 Jun 2016 11:37:51 +0200

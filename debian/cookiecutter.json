@@ -1,0 +1,14 @@
+{
+    "distro": "UNRELEASED",
+    "email": "jh@web.de",
+    "full_name": "1&1 Group",
+    "github_username": "1and1",
+    "license": "Apache 2.0",
+    "package": "config-sesame",
+    "repo_name": "debian",
+    "short_description": "A tool to look up secrets from a vault based on existing shareable configuration.",
+    "snake": "/usr/bin/python2",
+    "url": "https://github.com/1and1/config-sesame",
+    "version": "0.1.0",
+    "year": "2016"
+}
