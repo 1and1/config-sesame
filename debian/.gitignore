@@ -1,0 +1,6 @@
+config-sesame.*.debhelper
+config-sesame.substvars
+config-sesame/
+config-sesame-*/
+files
+debhelper-build-stamp
