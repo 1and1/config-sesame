@@ -63,7 +63,11 @@ def help_command(ctx, config_dump=False):
             raise
     else:
         print(hv)
-        print("Policies: {}".format(', '.join(hv.api.list_policies())))
+        policies = hv.api.list_policies()
+        if 'root' in policies:
+            click.secho("WARN: You are connected using a 'root' token!",
+                fg='yellow', bg='black', bold=True, reverse=True)
+        print("Policies: {}".format(', '.join(policies)))
         print("Auth Backends:")
         for mount, data in hv.api.list_auth_backends().items():
             print("    {mount:15s} {type:15s} {description}".format(mount=mount, **data))
