@@ -106,6 +106,8 @@ Let's try accessing the server via ``config-seasme`` next. First, add the
 *vault root token* to your keyring (you'll find that in the file ``/var/lib/vault/.vault-token``,
 given the setup outline above):
 
+.. code-block:: shell
+
     keyring set "$VAULT_ADDR" "$LOGNAME"
 
 You can also set the ``VAULT_TOKEN`` environment variable (which is not as secure),
