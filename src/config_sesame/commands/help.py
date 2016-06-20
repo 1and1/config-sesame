@@ -54,15 +54,22 @@ def help_command(ctx, config_dump=False):
     ))
 
     banner('Vault Information')
-    hv = vault.Connection()
-    print(hv)
-    print("Policies: {}".format(', '.join(hv.api.list_policies())))
-    print("Auth Backends:")
-    for mount, data in hv.api.list_auth_backends().items():
-        print("    {mount:15s} {type:15s} {description}".format(mount=mount, **data))
-    print("Storage:")
-    for mount, data in hv.api.list_secret_backends().items():
-        print("    {mount:15s} {type:15s} {description}".format(mount=mount, **data))
+    try:
+        hv = vault.Connection()
+    except ValueError as cause:
+        if "target" in cause.message:
+            click.serror("{} -- forgot to edit configuration or set VAULT_ADDR?", cause)
+        else:
+            raise
+    else:
+        print(hv)
+        print("Policies: {}".format(', '.join(hv.api.list_policies())))
+        print("Auth Backends:")
+        for mount, data in hv.api.list_auth_backends().items():
+            print("    {mount:15s} {type:15s} {description}".format(mount=mount, **data))
+        print("Storage:")
+        for mount, data in hv.api.list_secret_backends().items():
+            print("    {mount:15s} {type:15s} {description}".format(mount=mount, **data))
 
     banner('More Help')
     click.echo("Call '{} --help' to get a list of available commands & options.".format(app_name))
