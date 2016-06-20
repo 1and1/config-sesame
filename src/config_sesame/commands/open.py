@@ -17,58 +17,22 @@
 # limitations under the License.
 from __future__ import absolute_import, unicode_literals, print_function
 
-import io
-import os
 import sys
-import collections
 
-import yaml
 from pyaml import dump as ppyaml
 from click.exceptions import UsageError
 from rudiments.reamed import click
 
 from .. import config
+from ..util import cfgdata
 
 SECRETS_POSTFIX = '_secret'
-
-
-def load_all(filename):
-    """Generate objects contained in ``filename``."""
-    if filename.endswith('.yaml') or filename.endswith('.yml'):
-        with io.open(filename, encoding='utf-8') as handle:
-            for obj in yaml.load_all(handle):
-                yield obj
-    else:
-        raise UsageError("Unsupported file type (extension) in '{}'!".format(filename))
-
-
-def is_mapping(obj):
-    """Check if ``obj`` offers the mapping interface."""
-    return isinstance(obj, (dict, collections.Mapping, collections.MappingView))
-
-
-def merge_objects(namespace, obj):
-    """Update ``namespace`` with data in ``obj``."""
-    for key, val in obj.items():
-        if key in namespace and is_mapping(namespace[key]) and is_mapping(val):
-            merge_objects(namespace[key], val)
-        else:
-            namespace[key] = val
-
-
-def read_merged_files(cfgfiles):
-    """Read a list of hierachical config files, and merge their keys."""
-    result = {}
-    for cfgfile in cfgfiles:
-        for obj in load_all(cfgfile):
-            merge_objects(result, obj)
-    return result
 
 
 def lookup_secrets(obj):
     """Scan ``obj`` for secrets, and look them up."""
     result = {}
-    if is_mapping(obj):
+    if cfgdata.is_mapping(obj):
         for key, val in obj.items():
             if key.endswith(SECRETS_POSTFIX):
                 result[key[:-len(SECRETS_POSTFIX)]] = "THIS WOULD BE LOOKED UP"
@@ -87,7 +51,7 @@ def open_command(ctx, cfgfile=None):
     if not cfgfile:
         raise UsageError("You provided no configuration file names!", ctx=ctx)
 
-    cfgdata = read_merged_files(cfgfile)
-    secrets = lookup_secrets(cfgdata)
+    data = cfgdata.read_merged_files(cfgfile)
+    secrets = lookup_secrets(data)
     #ppyaml(cfgdata, sys.stdout)
     ppyaml(secrets, sys.stdout)
