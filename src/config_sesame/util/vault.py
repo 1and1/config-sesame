@@ -18,14 +18,13 @@
 from __future__ import absolute_import, unicode_literals, print_function
 
 import os
-import sys
 import getpass
 
 import hvac
 from rudiments import security
 
 
-class Connection():
+class Connection(object):
     """Hashicorp Vault connection."""
 
     def __init__(self, url=None, token=None):

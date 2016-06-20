@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# pylint: disable=wildcard-import, unused-wildcard-import, bad-continuation
+# pylint: disable=wildcard-import, unused-wildcard-import, bad-continuation, invalid-name
 """ Project automation for Invoke.
 """
 # Copyright ©  2016 1&1 Group <jh@web.de>
