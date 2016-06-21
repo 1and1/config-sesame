@@ -38,13 +38,13 @@ or tools like ``virtualenv``.
     release="https://github.com/1and1/config-sesame/archive/master.zip#egg=config-sesame"
 
     # install "config-sesame" to its own virtualenv
-    mkdir -p ~/.local/venvs
-    test -d ~/.local/venvs/config-sesame \
-        || virtualenv ~/.local/venvs/config-sesame
-    ~/.local/venvs/config-sesame/bin/pip install -U pip setuptools wheel
-    ~/.local/venvs/config-sesame/bin/pip install -U "$release"
+    mkdir -p ~/.local/virtualenvs
+    test -d ~/.local/virtualenvs/config-sesame \
+        || virtualenv ~/.local/virtualenvs/config-sesame
+    ~/.local/virtualenvs/config-sesame/bin/pip install -U pip setuptools wheel
+    ~/.local/virtualenvs/config-sesame/bin/pip install -U "$release"
     mkdir ~/bin 2>/dev/null && exec $SHELL -l
-    ln -s ~/.local/venvs/config-sesame/bin/config-sesame ~/bin
+    ln -s ~/.local/virtualenvs/config-sesame/bin/config-sesame ~/bin
     config-sesame --version
 
 On *Linux*, if you want to safely store the credentials to access *Vault* in your account's keyring,
@@ -53,7 +53,7 @@ execute these additional commands:
 .. code-block:: shell
 
     sudo apt-get install libdbus-glib-1-dev python-dev libffi-dev build-essential
-    ~/.local/venvs/config-sesame/bin/pip install secretstorage dbus-python keyring
+    ~/.local/virtualenvs/config-sesame/bin/pip install secretstorage dbus-python keyring
 
 See `keyring installation`_ for more details on that.
 
