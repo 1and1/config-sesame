@@ -24,17 +24,31 @@ import hvac
 from rudiments import security
 
 
+def default_credentials(url=None, token=None):
+    """Return default credentials from env / configuration in a tuple (url, user, token, auth_by)."""
+    url = url or os.environ.get('VAULT_ADDR')  # TODO: also add lookup from config / cmd line
+    token = token or os.environ.get('VAULT_TOKEN')
+    user, auth_by = getpass.getuser(), 'environment'
+
+    return (url, user, token, auth_by)
+
+
+def get_credentials(url=None, token=None):
+    """Return active credentials in a tuple (url, user, token, auth_by)."""
+    url, user, token, auth_by = default_credentials(url, token)
+    if not token:
+        access = security.Credentials(url)
+        user, token = access.auth_pair()
+        auth_by = access.source
+
+    return (url, user, token, auth_by)
+
+
 class Connection(object):
     """Hashicorp Vault connection."""
 
     def __init__(self, url=None, token=None):
-        self.url = url or os.environ.get('VAULT_ADDR')  # TODO: also add lookup from config / cmd line
-        self.token = token or os.environ.get('VAULT_TOKEN')
-        self.user, self.auth_by = getpass.getuser(), 'environment'
-        if not self.token:
-            access = security.Credentials(self.url)
-            self.user, self.token = access.auth_pair()
-            self.auth_by = access.source
+        self.url, self.user, self.token, self.auth_by = get_credentials(url, token)
         self.api = hvac.Client(url=self.url, token=self.token)
 
     def __str__(self):
