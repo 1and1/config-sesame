@@ -17,6 +17,14 @@ config_sesame.commands.help module
     :undoc-members:
     :show-inheritance:
 
+config_sesame.commands.login module
+-----------------------------------
+
+.. automodule:: config_sesame.commands.login
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 config_sesame.commands.open module
 ----------------------------------
 
