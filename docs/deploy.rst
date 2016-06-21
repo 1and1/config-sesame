@@ -104,18 +104,15 @@ If the server runs on a remote machine, adapt the ``VAULT_ADDR`` accordingly.
 
 Let's try accessing the server via ``config-seasme`` next. First, add the
 *vault root token* to your keyring (you'll find that in the file ``/var/lib/vault/.vault-token``,
-given the setup outline above):
-
-.. code-block:: shell
-
-    keyring set "$VAULT_ADDR" "$LOGNAME"
-
+given the setup outline above), by calling the ``config-sesame login`` command which will
+prompt you for the token and remember it in a safe place.
 You can also set the ``VAULT_TOKEN`` environment variable (which is not as secure),
-or do nothing, then you'll be prompted for the token on the console.
-
-Now call the ``config-sesame help`` command, and it should show some information
+or do nothing, then you'll be prompted for the token on the console each time it is needed.
+Then call the ``config-sesame help`` command, and it should show some information
 about your running *Vault* service.
 
+Note that in a production setup, you will have a personal access token, e.g. obtained
+via LDAP or similar credentials.
 
 .. _`Installing Python Software`: https://py-generic-project.readthedocs.io/en/latest/installing.html#quick-setup
 .. _`keyring installation`: https://rudiments.readthedocs.io/en/latest/end-user.html#installation-procedures
