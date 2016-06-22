@@ -18,6 +18,7 @@
 from __future__ import absolute_import, unicode_literals
 
 import os
+import sys
 import shutil
 import tempfile
 
@@ -57,6 +58,29 @@ def fresh_cookies(ctx, mold=''):
         ctx.run("git status")
 
 namespace.add_task(fresh_cookies)
+
+
+@task
+def populate(ctx):
+    """Populate a vault instance with test data."""
+    if not os.getenv('VAULT_ADDR'):
+        fail('You MUST export a VAULT_ADDR env var (e.g. "http://127.0.0.1:8200")!')
+    if not os.getenv('VAULT_TOKEN'):
+        fail('You MUST export a VAULT_TOKEN env var with your access token!')
+
+    data = {
+        'db/credentials': dict(user='kermit', pwd='SECRET'),
+        'db2/password': 'ALSO_SECRET',
+        'resource/password': 'MORE_SECRETS',
+    }
+    for key, val in data.items():
+        try:
+            val = 'value="{}"'.format('' + val)
+        except TypeError:
+            val = ' '.join('{}="{}"'.format(*x) for x in val.items())
+        ctx.run('vault write "secret/sesame/{}" {}'.format(key, val))
+
+namespace.add_task(populate)
 
 
 @task
