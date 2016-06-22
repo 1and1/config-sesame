@@ -24,6 +24,8 @@ import getpass
 import hvac
 from rudiments import security
 
+from .._compat import urljoin
+
 VAULT_TOKEN_FILE = '~/.vault-token'
 
 
@@ -53,12 +55,23 @@ def get_credentials(url=None, token=None):
     return (url, user, token, auth_by)
 
 
+class APIWrapper(hvac.Client):
+    """Wrapper for client API."""
+
+    last_url = None
+
+    def _get(self, url, **kwargs):
+        """Remember last accessed URL."""
+        self.last_url = urljoin(self._url, url)
+        return hvac.Client._get(self, url, **kwargs)
+
+
 class Connection(object):
     """Hashicorp Vault connection."""
 
     def __init__(self, url=None, token=None):
         self.url, self.user, self.token, self.auth_by = get_credentials(url, token)
-        self.api = hvac.Client(url=self.url, token=self.token)
+        self.api = APIWrapper(url=self.url, token=self.token)
 
     def __str__(self):
         """Return human readable description of this connection."""
