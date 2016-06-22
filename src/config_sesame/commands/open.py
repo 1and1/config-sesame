@@ -25,7 +25,7 @@ from click.exceptions import UsageError
 from rudiments.reamed import click
 
 from .. import config
-from ..util import cfgdata
+from ..util import cfgdata, vault
 
 SECRETS_POSTFIX = '_secret'
 
@@ -37,26 +37,34 @@ def vault_key(reference):
     return reference.split(':', 1)[1].strip('/')
 
 
-def lookup_key(key, bases):
+def lookup_key(key, bases, conn):
     """Look for a key in the given bases."""
     for base in bases:
         key_path = ''.join((base, '/', key)).strip('/')
-        return "THIS WOULD BE LOOKED UP FROM " + key_path
+        secret = conn.api.read(key_path)
+        ##print(repr((key_path, secret)))
+        if secret is not None:
+            result = secret['data']
+            if len(result) == 1:
+                result = result.get('value', result)
+            return result, conn.api.last_url
+
+    raise UsageError('Cannot find key "{}" in any of these bases: {}.'
+                     .format(key, ', '.join(x or '/' for x in bases)))
 
 
-def lookup_secrets(obj, bases):
+def lookup_secrets(obj, bases, conn):
     """Scan ``obj`` for secrets, and look them up."""
-    bases = [x.strip('/') for x in bases] or ['']
+    bases = [x.strip('/') for x in bases or ['']]
 
     result = {}
     if cfgdata.is_mapping(obj):
         for key, val in obj.items():
             if key.endswith(SECRETS_POSTFIX):
-                key = key[:-len(SECRETS_POSTFIX)]
-                result[key] = lookup_key(vault_key(val), bases)
-                # TODO: Add *_vault_url for diagnostics?!
+                base_key = key[:-len(SECRETS_POSTFIX)]
+                result[base_key], result[key + '_url'] = lookup_key(vault_key(val), bases, conn)
             else:
-                subtree = lookup_secrets(val, bases)
+                subtree = lookup_secrets(val, bases, conn)
                 if subtree:
                     result[key] = subtree
     return result
@@ -71,13 +79,21 @@ def lookup_secrets(obj, bases):
                    ' use "-o-" for printing clear text secrets to stdout.')
 @click.argument('cfgfile', metavar='CFGFILE [...]', nargs=-1)
 @click.pass_context
-def open_command(ctx, cfgfile=None, bases=[], outfile=''):
+def open_command(ctx, cfgfile=None, bases=None, outfile=''):
     """Open vault and amend configuration file(s)."""
     if not cfgfile:
         raise UsageError("You provided no configuration file names!", ctx=ctx)
 
+    try:
+        conn = vault.Connection()
+    except ValueError as cause:
+        if "target" in cause.message:
+            click.serror("{} -- forgot to edit configuration or set VAULT_ADDR?", cause)
+        else:
+            raise
+
     data = cfgdata.read_merged_files(cfgfile)
-    secrets = lookup_secrets(data, bases)
+    secrets = lookup_secrets(data, bases, conn)
     #ppyaml(cfgdata, sys.stdout)
     if outfile in ('', '-'):
         ppyaml(secrets, sys.stdout)
