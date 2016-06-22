@@ -63,13 +63,13 @@ def lookup_secrets(obj, bases):
 
 
 @config.cli.command(name='open')
-@click.option('-b', '--base', "bases", metavar='KEY-PATH', multiple=True,
+@click.option('-b', '--base', 'bases', metavar='PATH [-b ...]', multiple=True,
               help='Look up keys relative to the given base path(s).')
-@click.option('-o', '--output', "outfile", metavar='FILE',
+@click.option('-o', '--output', 'outfile', metavar='FILE',
               type=click.Path(), show_default=True, default='secrets.yml',
               help='Write output to given file,'
                    ' use "-o-" for printing clear text secrets to stdout.')
-@click.argument('cfgfile', nargs=-1)
+@click.argument('cfgfile', metavar='CFGFILE [...]', nargs=-1)
 @click.pass_context
 def open_command(ctx, cfgfile=None, bases=[], outfile=''):
     """Open vault and amend configuration file(s)."""
