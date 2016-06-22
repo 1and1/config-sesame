@@ -17,11 +17,14 @@
 # limitations under the License.
 from __future__ import absolute_import, unicode_literals, print_function
 
+import io
 import os
 import getpass
 
 import hvac
 from rudiments import security
+
+VAULT_TOKEN_FILE = '~/.vault-token'
 
 
 def default_credentials(url=None, token=None):
@@ -29,6 +32,12 @@ def default_credentials(url=None, token=None):
     url = url or os.environ.get('VAULT_ADDR')  # TODO: also add lookup from config / cmd line
     token = token or os.environ.get('VAULT_TOKEN')
     user, auth_by = getpass.getuser(), 'environment'
+
+    token_file = os.path.expanduser(VAULT_TOKEN_FILE)
+    if not token and os.path.exists(token_file):
+        with io.open(token_file, encoding='utf-8') as handle:
+            token = handle.readline().strip()
+            auth_by = 'vault-token-file'
 
     return (url, user, token, auth_by)
 
