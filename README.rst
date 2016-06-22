@@ -116,6 +116,7 @@ References
 -  `Click`_
 - `rudiments`_
 - `keyring`_
+- `hvac`_
 
 **Related Projects**
 
@@ -151,6 +152,7 @@ Documentation hosted by `Read the Docs`_.
 .. _`jsonmerge`: https://github.com/avian2/jsonmerge
 .. _`rudiments`: https://rudiments.readthedocs.io/
 .. _`keyring`: http://pythonhosted.org/keyring/
+.. _`hvac`: https://github.com/ianunruh/hvac
 
 .. |Logo| image:: https://raw.githubusercontent.com/1and1/config-sesame/master/docs/_static/img/logo.png
 .. |Travis CI| image:: https://api.travis-ci.org/1and1/config-sesame.svg
