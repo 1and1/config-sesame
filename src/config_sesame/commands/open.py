@@ -17,6 +17,7 @@
 # limitations under the License.
 from __future__ import absolute_import, unicode_literals, print_function
 
+import io
 import sys
 
 from pyaml import dump as ppyaml
@@ -44,9 +45,13 @@ def lookup_secrets(obj):
 
 
 @config.cli.command(name='open')
+@click.option('-o', '--output', "outfile", metavar='FILE',
+              type=click.Path(), show_default=True, default='secrets.yml',
+              help='Write output to given file,'
+                   ' use "-o-" for printing clear text secrets to stdout.')
 @click.argument('cfgfile', nargs=-1)
 @click.pass_context
-def open_command(ctx, cfgfile=None):
+def open_command(ctx, cfgfile=None, outfile=''):
     """Open vault and amend configuration file(s)."""
     if not cfgfile:
         raise UsageError("You provided no configuration file names!", ctx=ctx)
@@ -54,4 +59,10 @@ def open_command(ctx, cfgfile=None):
     data = cfgdata.read_merged_files(cfgfile)
     secrets = lookup_secrets(data)
     #ppyaml(cfgdata, sys.stdout)
-    ppyaml(secrets, sys.stdout)
+    if outfile in ('', '-'):
+        ppyaml(secrets, sys.stdout)
+    else:
+        if not ctx.obj.quiet:
+            click.echo('Writing secrets to "{}"...'.format(outfile))
+        with io.open(outfile, 'w', encoding='utf-8') as handle:
+            ppyaml(secrets, handle)
