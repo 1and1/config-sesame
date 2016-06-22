@@ -102,13 +102,15 @@ Make sure your *Vault* server is up and reachable by using these commands:
 
 If the server runs on a remote machine, adapt the ``VAULT_ADDR`` accordingly.
 
-Let's try accessing the server via ``config-seasme`` next. First, add the
-*vault root token* to your keyring (you'll find that in the file ``/var/lib/vault/.vault-token``,
-given the setup outline above), by calling the ``config-sesame login`` command which will
-prompt you for the token and remember it in a safe place.
-You can also set the ``VAULT_TOKEN`` environment variable (which is not as secure),
-or do nothing, then you'll be prompted for the token on the console each time it is needed.
-Then call the ``config-sesame help`` command, and it should show some information
+Let's try accessing the server via ``config-sesame`` next. First, add the
+*vault root token* to your keyring, by calling the ``config-sesame login`` command
+which will prompt you for the token and remember it in a safe place.
+For the test setup as outlined above, you'll find that token in the file
+``/var/lib/vault/.vault-token``.
+You can also set the ``VAULT_TOKEN`` environment variable
+or create the ``~/.vault-token`` file (which is not as secure as using the keyring),
+otherwise you'll be prompted for the token on the console each time it is needed.
+Finally call the ``config-sesame help`` command, and it should show some information
 about your running *Vault* service.
 
 Note that in a production setup, you will have a personal access token, e.g. obtained
