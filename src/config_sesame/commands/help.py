@@ -55,24 +55,24 @@ def help_command(ctx, config_dump=False):
 
     banner('Vault Information')
     try:
-        hv = vault.Connection()
+        conn = vault.Connection()
     except ValueError as cause:
         if "target" in cause.message:
             click.serror("{} -- forgot to edit configuration or set VAULT_ADDR?", cause)
         else:
             raise
     else:
-        print(hv)
-        policies = hv.api.list_policies()
+        print(conn)
+        policies = conn.api.list_policies()
         if 'root' in policies:
             click.secho("WARN: You are connected using a 'root' token!",
                 fg='yellow', bg='black', bold=True, reverse=True)
         print("Policies: {}".format(', '.join(policies)))
         print("Auth Backends:")
-        for mount, data in hv.api.list_auth_backends().items():
+        for mount, data in conn.api.list_auth_backends().items():
             print("    {mount:15s} {type:15s} {description}".format(mount=mount, **data))
         print("Storage:")
-        for mount, data in hv.api.list_secret_backends().items():
+        for mount, data in conn.api.list_secret_backends().items():
             print("    {mount:15s} {type:15s} {description}".format(mount=mount, **data))
 
     banner('More Help')

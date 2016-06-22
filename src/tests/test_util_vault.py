@@ -25,7 +25,7 @@ def test_Vault_token_is_read_from_token_file(mocker):
     mocker.patch('config_sesame.util.vault.VAULT_TOKEN_FILE', __file__)
     mocker.patch.dict('os.environ', VAULT_TOKEN='')
 
-    url, user, token, auth_by = vault.default_credentials()
+    _, _, token, auth_by = vault.default_credentials()
 
     assert token == '# *- coding: utf-8 -*-'
     assert auth_by == 'vault-token-file'

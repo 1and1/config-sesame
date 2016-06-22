@@ -3,6 +3,7 @@
 # pylint: disable=unused-argument, too-few-public-methods, redefined-builtin
 # pylint: disable=no-name-in-module, no-member, undefined-variable
 # pylint: disable=import-error, wrong-import-position, wrong-import-order
+# pylint: disable=redefined-variable-type
 # flake8: noqa
 """
     config_sesame._compat
