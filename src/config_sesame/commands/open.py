@@ -30,34 +30,54 @@ from ..util import cfgdata
 SECRETS_POSTFIX = '_secret'
 
 
-def lookup_secrets(obj):
+def vault_key(reference):
+    """Validate a vault key reference."""
+    if not reference.startswith('vault:'):
+        raise UsageError('Expected a "vault:..." reference, got "{}" instead'.format(reference))
+    return reference.split(':', 1)[1].strip('/')
+
+
+def lookup_key(key, bases):
+    """Look for a key in the given bases."""
+    for base in bases:
+        key_path = ''.join((base, '/', key)).strip('/')
+        return "THIS WOULD BE LOOKED UP FROM " + key_path
+
+
+def lookup_secrets(obj, bases):
     """Scan ``obj`` for secrets, and look them up."""
+    bases = [x.strip('/') for x in bases] or ['']
+
     result = {}
     if cfgdata.is_mapping(obj):
         for key, val in obj.items():
             if key.endswith(SECRETS_POSTFIX):
-                result[key[:-len(SECRETS_POSTFIX)]] = "THIS WOULD BE LOOKED UP"
+                key = key[:-len(SECRETS_POSTFIX)]
+                result[key] = lookup_key(vault_key(val), bases)
+                # TODO: Add *_vault_url for diagnostics?!
             else:
-                subtree = lookup_secrets(val)
+                subtree = lookup_secrets(val, bases)
                 if subtree:
                     result[key] = subtree
     return result
 
 
 @config.cli.command(name='open')
+@click.option('-b', '--base', "bases", metavar='KEY-PATH', multiple=True,
+              help='Look up keys relative to the given base path(s).')
 @click.option('-o', '--output', "outfile", metavar='FILE',
               type=click.Path(), show_default=True, default='secrets.yml',
               help='Write output to given file,'
                    ' use "-o-" for printing clear text secrets to stdout.')
 @click.argument('cfgfile', nargs=-1)
 @click.pass_context
-def open_command(ctx, cfgfile=None, outfile=''):
+def open_command(ctx, cfgfile=None, bases=[], outfile=''):
     """Open vault and amend configuration file(s)."""
     if not cfgfile:
         raise UsageError("You provided no configuration file names!", ctx=ctx)
 
     data = cfgdata.read_merged_files(cfgfile)
-    secrets = lookup_secrets(data)
+    secrets = lookup_secrets(data, bases)
     #ppyaml(cfgdata, sys.stdout)
     if outfile in ('', '-'):
         ppyaml(secrets, sys.stdout)
