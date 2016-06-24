@@ -116,6 +116,44 @@ about your running *Vault* service.
 Note that in a production setup, you will have a personal access token, e.g. obtained
 via LDAP or similar credentials.
 
+
+Production Deployment
+---------------------
+
+The project contains a ``debian`` directory that supports building
+a self-contained Python virtualenv wrapped into a Debian package
+(an "omnibus" package, all passengers on board).
+The packaged virtualenv is kept in sync with the host's interpreter automatically.
+See `dh-virtualenv`_ for more details.
+On platforms that are not some *Debian* flavour, consider using `platter`_.
+
+Note that you need to install the usual Debian development tools and ``dh-virtualenv``
+(at least version 0.10), before you can actually build the DEB package.
+These incantations will perform that for you (on *Xenial*):
+
+.. code-block:: shell
+
+    sudo apt-get install build-essential debhelper devscripts equivs
+    sudo mk-build-deps --install debian/control
+
+*Jessie* only comes with version ``0.7`` – that might work,
+otherwise you have to build a newer version from source,
+or use ``0.10`` from backports.
+
+Then, if you have all pre-requisites satisfied, try this:
+
+.. code-block:: shell
+
+    dpkg-buildpackage -uc -us -b
+
+The resulting package, if all went well, can be found in the parent of your project directory.
+You can upload it to a Debian package repository via e.g. `dput`, see `dput-webdav`_
+for a hassle-free solution that works with *Artifactory* and *Bintray*.
+
+
 .. _`Installing Python Software`: https://py-generic-project.readthedocs.io/en/latest/installing.html#quick-setup
 .. _`keyring installation`: https://rudiments.readthedocs.io/en/latest/end-user.html#installation-procedures
 .. _`Vault's documentation`: https://www.vaultproject.io/intro/getting-started/install.html
+.. _`dh-virtualenv`: https://github.com/spotify/dh-virtualenv
+.. _`dput-webdav`: https://github.com/jhermann/artifactory-debian#package-uploading
+.. _`platter`: http://platter.pocoo.org/
