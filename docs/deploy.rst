@@ -125,7 +125,9 @@ a self-contained Python virtualenv wrapped into a Debian package
 (an "omnibus" package, all passengers on board).
 The packaged virtualenv is kept in sync with the host's interpreter automatically.
 See `dh-virtualenv`_ for more details.
-On platforms that are not some *Debian* flavour, consider using `platter`_.
+On platforms that are not some *Debian* flavour, consider using `rpmvenv`_, `platter`_ or `fpm`_.
+The motivation to always use native packages for deployment can be found in
+`Python Application Deployment with Native Packages`_.
 
 Note that you need to install the usual Debian development tools and ``dh-virtualenv``
 (at least version 0.10), before you can actually build the DEB package.
@@ -152,8 +154,11 @@ for a hassle-free solution that works with *Artifactory* and *Bintray*.
 
 
 .. _`Installing Python Software`: https://py-generic-project.readthedocs.io/en/latest/installing.html#quick-setup
+.. _`Python Application Deployment with Native Packages`: https://hynek.me/articles/python-app-deployment-with-native-packages/
 .. _`keyring installation`: https://rudiments.readthedocs.io/en/latest/end-user.html#installation-procedures
 .. _`Vault's documentation`: https://www.vaultproject.io/intro/getting-started/install.html
 .. _`dh-virtualenv`: https://github.com/spotify/dh-virtualenv
 .. _`dput-webdav`: https://github.com/jhermann/artifactory-debian#package-uploading
 .. _`platter`: http://platter.pocoo.org/
+.. _`fpm`: https://github.com/jordansissel/fpm
+.. _`rpmvenv`: https://github.com/kevinconway/rpmvenv
