@@ -57,7 +57,7 @@ def help_command(ctx, config_dump=False):
     try:
         conn = vault.Connection()
     except ValueError as cause:
-        if "target" in cause.message:
+        if "target" in str(cause):
             click.serror("{} -- forgot to edit configuration or set VAULT_ADDR?", cause)
         else:
             raise
