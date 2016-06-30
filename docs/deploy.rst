@@ -148,7 +148,14 @@ Then, if you have all pre-requisites satisfied, try this:
 
     dpkg-buildpackage -uc -us -b
 
-The resulting package, if all went well, can be found in the parent of your project directory.
+or, if you followed the instructions to create a developer working directory, this instead:
+
+.. code-block:: shell
+
+    invoke deb
+
+The resulting package, if all went well, can be found in the parent of your project directory
+for the direct ``dpkg-buildpackage`` call, and in ``dist`` when you used ``invoke``.
 You can upload it to a Debian package repository via e.g. `dput`, see `dput-webdav`_
 for a hassle-free solution that works with *Artifactory* and *Bintray*.
 
