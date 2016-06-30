@@ -126,7 +126,7 @@ a self-contained Python virtualenv wrapped into a Debian package
 The packaged virtualenv is kept in sync with the host's interpreter automatically.
 See `dh-virtualenv`_ for more details.
 On platforms that are not some *Debian* flavour, consider using `rpmvenv`_, `platter`_ or `fpm`_.
-The motivation to always use native packages for deployment can be found in
+The motivation to strongly prefer native packages for deployment can be found in
 `Python Application Deployment with Native Packages`_.
 
 Note that you need to install the usual Debian development tools and ``dh-virtualenv``
